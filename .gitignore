@@ -1,0 +1,38 @@
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore Linux file system files
+*~
+*.swp
+*.bak
+
+# Ignore log files
+*.log
+
+# Ignore compiled Python files
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore compiled files
+*.o
+*.a
+*.so
+
+# Ignore node_modules (if using Node.js)
+node_modules/
+
+# Ignore .env files (for environment variables)
+.env
+
+# Ignore backup files
+*.bak
+*.swp
+
+# Ignore Vim files
+*.un~
+*.swp
+
+# Container Volumes
+/Portainer/data/

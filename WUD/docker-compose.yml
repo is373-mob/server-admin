@@ -1,0 +1,16 @@
+name: "WUD"
+services:
+  whatsupdocker:
+    image: getwud/wud
+    container_name: wud
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.wud.rule=PathPrefix(`/`)"
+        - "traefik.http.routers.wud.entrypoints=wud"
+        - "traefik.http.services.wud.loadbalancer.server.port=3000"
+        - "traefik.http.routers.wud.middlewares=tailscale-ip-restriction"
+    environment:
+      - WUD_TRIGGER_DOCKER_UPDATE_PRUNE=true
+      - WUD_TRIGGER_DOCKER_UPDATE_MODE=simple

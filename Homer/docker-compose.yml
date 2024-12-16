@@ -1,0 +1,16 @@
+services:
+  homer:
+    image: b4bz/homer
+    container_name: homer
+    volumes:
+      - ./config:/www/assets
+    user: 1000:1000
+    environment:
+      - INIT_ASSETS=1
+    restart: unless-stopped
+    labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.homer.rule=Host(`server.tail88f271.ts.net`)"
+        - "traefik.http.routers.homer.entrypoints=web"
+        - "traefik.http.services.homer.loadbalancer.server.port=8080"
+        - "traefik.http.routers.homer.middlewares=tailscale-ip-restriction"

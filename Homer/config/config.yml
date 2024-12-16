@@ -1,0 +1,85 @@
+---
+# Homepage configuration
+# See https://fontawesome.com/search for icons options
+
+title: "App dashboard"
+subtitle: "Homer"
+
+header: true
+columns: "2" # "auto" or number (must be a factor of 12: 1, 2, 3, 4, 6, 12)
+connectivityCheck: true # whether you want to display a message when the apps are not accessible anymore (VPN disconnected for example).
+                        # You should set it to true when using an authentication proxy, it also reloads the page when a redirection is detected when checking connectivity.
+
+defaults:
+  layout: columns
+  colorTheme: auto 
+
+
+colors:
+  light:
+    highlight-primary: "#3367d6"
+    highlight-secondary: "#4285f4"
+    highlight-hover: "#5a95f5"
+    background: "#f5f5f5"
+    card-background: "#ffffff"
+    text: "#363636"
+    text-header: "#424242"
+    text-title: "#303030"
+    text-subtitle: "#424242"
+    card-shadow: rgba(0, 0, 0, 0.1)
+    link: "#3273dc"
+    link-hover: "#363636"
+  dark:
+    highlight-primary: "#3367d6"
+    highlight-secondary: "#4285f4"
+    highlight-hover: "#5a95f5"
+    background: "#131313"
+    card-background: "#2b2b2b"
+    text: "#eaeaea"
+    text-header: "#ffffff"
+    text-title: "#fafafa"
+    text-subtitle: "#f5f5f5"
+    card-shadow: rgba(0, 0, 0, 0.4)
+    link: "#3273dc"
+    link-hover: "#ffdd57"
+
+links:
+  - name: "Organization"
+    icon: "fab fa-github"
+    url: "https://github.com/is373-mob"
+    target: "_blank" # optional html tag target attribute
+  - name: "link 2"
+    icon: "fas fa-book"
+    url: "https://github.com/bastienwirtz/homer"
+
+services:
+  - name: "Website"
+    icon: "fas fa-code-branch"
+    items:
+      - name: "Homepage"
+        subtitle: "Website Homepage"
+        url: "http://home.is373mob.com"
+        target: "_blank" 
+      - name: "Drupal"
+        subtitle: "Website Admin"
+        url: "http://is373mob.com/admin/"
+        target: "_blank" 
+  - name: "Admin"
+    icon: "fas fa-heartbeat"
+    items:
+      - name: "Traefik"
+        subtitle: "Reverse Proxy Management"
+        url: "http://server.tail88f271.ts.net:8080"
+        target: "_blank" 
+      - name: "Portainer"
+        subtitle: "Container Management"
+        url: "http://server.tail88f271.ts.net:8081"
+        target: "_blank" 
+      - name: "Glances"
+        subtitle: "Real-time System and Container Monitoring"
+        url: "http://server.tail88f271.ts.net:8083"
+        target: "_blank" 
+      - name: "What's Up Docker"
+        subtitle: "Docker Image Monitoring and Update Notifier"
+        url: "http://server.tail88f271.ts.net:8082"
+        target: "_blank" 

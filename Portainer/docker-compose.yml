@@ -1,0 +1,14 @@
+services:
+    portainer:
+        container_name: portainer
+        image: 'portainer/portainer-ce:latest'
+        restart: unless-stopped
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock'
+            - './data:/data'
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.portainer.rule=PathPrefix(`/`)"
+            - "traefik.http.routers.portainer.entrypoints=portainer"
+            - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+            - "traefik.http.routers.portainer.middlewares=tailscale-ip-restriction"

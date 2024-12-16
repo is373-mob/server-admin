@@ -1,0 +1,39 @@
+name: "Traefik"
+services:
+  traefik:
+    image: "traefik:latest"
+    container_name: "traefik"
+    restart: unless-stopped
+    command:
+      # Logging
+      - "--log.level=DEBUG"
+      - "--accesslog.filepath=/traefik-logs/access.log"
+      - "--accesslog.addinternals"
+
+      # Enabling Dashboard
+      - "--api.dashboard=true"
+
+      # Enabling Docker
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+
+      # Entrypoints
+      - "--entryPoints.web.address=:80"
+      - "--entryPoints.websecure.address=:443"
+      - "--entryPoints.dashboard.address=:8080"
+      - "--entryPoints.portainer.address=:8081"
+      - "--entryPoints.wud.address=:8082"
+      - "--entryPoints.glances.address=:8083"
+    labels:
+      # Expose the Traefik dashboard and apply IP whitelist middleware
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashboard.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.dashboard.entrypoints=dashboard"
+      - "traefik.http.routers.dashboard.service=api@internal"
+      - "traefik.http.routers.dashboard.middlewares=tailscale-ip-restriction"
+      - "traefik.http.services.dashboard.loadbalancer.server.port=8080"
+      - "traefik.http.middlewares.tailscale-ip-restriction.ipwhitelist.sourcerange=100.64.0.0/10"
+    network_mode: "host"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./logs:/traefik-logs"
